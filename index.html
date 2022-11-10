@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paper Bank</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    
+    <div id="login-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-8">
+                    <div class="login__area__box pt-5">
+                        <h5 class="text-center">Welcome To Login</h5><br>
+                        <input type="text" placeholder="Email" class="form-control"><br>
+                        <input type="password" placeholder="Password" class="form-control"><br>
+                       <div class="text-center">
+                        <button id="login" class="btn btn-success">Login</button>
+                       </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="transaction-area">
+      <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-10">
+                <div class="show__aera pt-5">
+                    <h5 class="text-center">Welcome To Paper Bank</h5><br>
+                    <div class="row pt-5">
+                        <div class="col-xl-4">
+                            <div class="show__area__box bg-primary">
+                                <h6>Deposit</h6>
+                                <h2>$<span id="currentDeposit">00</span></h2>
+                            </div>
+                        </div>
+                        <div class="col-xl-4">
+                            <div class="show__area__box bg-danger">
+                                <h6>withdraw</h6>
+                                <h2>$ <span id="currentWithdraw">00</span></h2>
+                            </div>
+                        </div>
+                        <div class="col-xl-4">
+                            <div class="show__area__box bg-info">
+                                <h6>Total Balance</h6>
+                                <h2>$ <span id="currentBalance">1200</span></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pt-5 justify-content-center">
+                    <div class="col-xl-5">
+                        <div class="show__area__form bg-secondary">
+                            <input id="depositAmount" type="number" placeholder="Deposit" class="form-control"><br>
+                           <div class="text-center">
+                            <button id="addDeposit" class="btn btn-success">Enter</button>
+                           </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-5">
+                        <div class="show__area__form bg-warning ">
+                            <input id="withdrawAmount" type="number" placeholder="withdraw" class="form-control"><br>
+                          <div class="text-center">
+                            <button id="addWithdraw" class="btn btn-success">Enter</button>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <h2 id="showText"></h2>
+
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/style.js"></script>
+
+    <script>
+    
+       // login button event handler
+       const loginBtn = document.getElementById("login");
+        loginBtn.addEventListener("click", function(){
+            const loginArea = document.getElementById("login-area");
+            loginArea.style.display = "none";
+            const transactionArea = document.getElementById("transaction-area");
+            transactionArea.style.display = "block";
+        })
+
+        //deposit button event handler
+        const depositBtn = document.getElementById("addDeposit");
+        depositBtn.addEventListener("click", function(){
+            const depositNumber = getInputNumber("depositAmount");        
+
+            updateSpanText("currentDeposit", depositNumber);
+            updateSpanText("currentBalance", depositNumber);
+
+            document.getElementById("depositAmount").value = "";
+        })
+
+        // withdraw button event handler
+        const withdrawBtn = document.getElementById("addWithdraw");
+        withdrawBtn.addEventListener("click", function(){
+            const withdrawNumber = getInputNumber("withdrawAmount");
+            
+            updateSpanText("currentWithdraw", withdrawNumber);
+            updateSpanText("currentBalance", -1 * withdrawNumber);
+
+            document.getElementById("withdrawAmount").value = ""
+        })
+
+        function getInputNumber(id){
+            const amount = document.getElementById(id).value;
+            const amountNumber = parseFloat(amount);
+            return amountNumber;
+        }
+
+        function updateSpanText(id, addedNumber){
+            const current = document.getElementById(id).innerText;
+            const currentNumber = parseFloat(current);
+            const totalAmount = addedNumber + currentNumber;
+            document.getElementById(id).innerText = totalAmount;
+        }
+
+
+    </script>
+</body>
+</html>

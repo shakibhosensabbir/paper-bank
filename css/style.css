@@ -1,0 +1,13 @@
+#transaction-area{
+    display: none;
+}
+.show__area__box, .show__area__form {
+    text-align: center;
+    background: white;
+    box-shadow: 2px -1px 5px 0px rgb(255 255 255 / 75%);
+    -webkit-box-shadow: 2px -1px 5px 0px rgb(175 174 174 / 75%);
+    -moz-box-shadow: 2px -1px 5px 0px rgba(0,0,0,0.75);
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+}
